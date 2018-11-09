@@ -27,6 +27,7 @@ router.get('/:id/actions', (req, res) => {
 });
 
 // POST insert new project
+// ** Todo: project name 128 characters max
 router.post('/', (req, res) => {
     if (req.body.name && req.body.description) {
         projectModel.insert(req.body)
@@ -52,11 +53,12 @@ router.delete('/:id', (req, res) => {
             }
         })
         .catch(err => {
-            res.status(500).json({ errorMessage: 'Error deleting project.' });
+            res.status(500).json({ errorMessage: 'Error deleting project' });
         });
 });
 
 // PUT update post by post id
+// ** Todo: project name 128 characters max
 router.put('/:id', (req, res) => {
     if (req.body.name && req.body.description) {
         projectModel.update(req.params.id, req.body)
